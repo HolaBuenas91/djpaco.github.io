@@ -1,95 +1,152 @@
 /* Estilos globales */
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-image: url('https://wallpapers.com/images/hd/super-cool-h943jt67w6kqn4e6.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #ffffff;  /* Color de texto general */
-    margin: 0;
-    padding: 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-image: url("https://wallpapers.com/images/hd/super-cool-h943jt67w6kqn4e6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff; /* Color de texto general */
+  margin: 0;
+  padding: 0;
 }
 
 /* Encabezado */
 header {
-    background: #002088;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
-    position: relative;
+  background: #002088;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  position: relative;
 }
 
 .logo {
-    float: left;
-    margin-left: 20px;
+  float: left;
+  margin-left: 20px;
 }
 
 /* Navegación */
 nav {
-    background: black;
-    padding: 15px;
-    text-align: center;
+  background: black;
+  padding: 15px;
+  text-align: center;
 }
 
 nav a {
-    color: #00f735;
-    margin: 20px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
+  color: #00f735;
+  margin: 20px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 nav a:hover {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 /* Secciones */
 section {
-    padding: 40px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
-    margin: 20px;
-    border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+  margin: 20px;
+  border-radius: 10px;
 }
 
 /* Títulos */
 h2 {
-    color: #00f735;
+  color: #00f735;
 }
 
 h3 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 /* Botones */
-.boton, .boton2 {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #0059ff;
-    color: white;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-decoration: none;
+.boton,
+.boton2 {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0059ff;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
 }
 
-.boton:hover, .boton2:hover {
-    background-color: #003bb3;
+.boton:hover,
+.boton2:hover {
+  background-color: #003bb3;
 }
 
 /* Pie de página */
 footer {
-    background: #001a6e;
-    color: white;
-    text-align: center;
-    padding: 20px;
+  background: #001a6e;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
 
 /* Imagenes */
 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Estilos para texto personalizado */
+.texto-personalizado {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.texto-personalizado2 {
+  font-size: 14px;
+  margin: 5px 0 0 0;
+}
+
+.castillalamancha {
+  max-width: 150px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+/* Mejoras de responsividad */
+@media (max-width: 768px) {
+  section {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  nav a {
+    margin: 10px;
+    display: inline-block;
+  }
+
+  iframe,
+  img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
+  }
+
+  .castillalamancha {
+    position: static;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .logo {
+    float: none;
+    margin: 0 auto 10px;
+    display: block;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
 }
+
