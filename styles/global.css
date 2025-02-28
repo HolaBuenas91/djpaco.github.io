@@ -1,0 +1,79 @@
+/* Estilos globales */
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: url('https://wallpapers.com/images/hd/super-cool-h943jt67w6kqn4e6.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado */
+header {
+    background: #002088;
+    color: #ffffff;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+}
+
+.logo {
+    float: left;
+    margin-left: 20px;
+}
+
+/* Navegación */
+nav {
+    background: rgb(0, 0, 0);
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: #00f735;
+    margin: 0 50px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Secciones */
+section {
+    padding: 40px;
+    text-align: center;
+}
+
+h2 {
+    color: #002088;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+/* Botones */
+.boton, .boton2 {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #0059ff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.boton:hover, .boton2:hover {
+    background-color: #003bb3;
+}
+
+/* Pie de página */
+footer {
+    background: #001a6e;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
