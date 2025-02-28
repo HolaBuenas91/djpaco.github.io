@@ -16,6 +16,7 @@
                 <li><a href="exitos.html" class="active">Música</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
+            <button id="theme-toggle" aria-label="Cambiar tema">🌓</button>
         </nav>
     </header>
 
@@ -25,27 +26,43 @@
             <p>Descubre los éxitos de Informáticos Gitanos</p>
         </section>
 
-        <section class="music">
-            <article>
-                <h2>Dimisión Paquito</h2>
-                <p>Informáticos Music</p>
-                <div class="video-container">
-                    <iframe src="https://youtube.com/embed/Yz_5vIRSYKc" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </article>
+        <section class="music-board">
+            <h2>Éxitos Musicales</h2>
+            <div class="music-grid">
+                <article class="music-card">
+                    <div class="video-container">
+                        <iframe src="https://youtube.com/embed/Yz_5vIRSYKc" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="music-content">
+                        <h3>Dimisión Paquito</h3>
+                        <p>Informáticos Music</p>
+                    </div>
+                </article>
 
-            <article>
-                <h2>Amonestado</h2>
-                <p>Informáticos Music prod. Alfonso</p>
-                <p>¡Próximamente! Estén atentos a nuestras redes sociales para la fecha de lanzamiento.</p>
-                <img src="https://support.proctorexam.com/hc/article_attachments/12390519091213/63c99e8da167b.png" alt="Imagen de próximo lanzamiento">
-            </article>
+                <article class="music-card">
+                    <div class="video-container">
+                        <iframe src="https://youtube.com/shorts/9G6Rf71Gtu0?feature=share" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="music-content">
+                        <h3>Amonestado</h3>
+                        <p>Informáticos Music prod. Ft.Yisus</p>
+                        <p>¡Ya está! Corre a escucharla!.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="disclaimer">
+            <h2>Aviso Legal</h2>
+            <p>Todo el contenido presentado en este sitio web es completamente ficticio y está sujeto al humor. Cualquier parecido con la realidad es pura coincidencia. Este sitio web tiene fines exclusivamente de entretenimiento y no debe ser tomado en serio.</p>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2025 Informáticos Gitanos. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="theme.js"></script>
 </body>
 </html>
 

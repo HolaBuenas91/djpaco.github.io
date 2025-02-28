@@ -16,6 +16,7 @@
                 <li><a href="exitos.html">Música</a></li>
                 <li><a href="contacto.html" class="active">Contacto</a></li>
             </ul>
+            <button id="theme-toggle" aria-label="Cambiar tema">🌓</button>
         </nav>
     </header>
 
@@ -25,31 +26,42 @@
             <p>Estamos aquí para escucharte</p>
         </section>
 
-        <section class="contact">
+        <section class="contact-form">
+            <h2>Envíanos un mensaje</h2>
             <form>
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="message">Mensaje:</label>
-                <textarea id="message" name="message" required></textarea>
-
-                <button type="submit">Enviar</button>
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar</button>
             </form>
+        </section>
 
-            <div class="contact-info">
-                <h2>Información de Contacto</h2>
-                <p>Email: <a href="mailto:jpraderalopez@gmail.com">jpraderalopez@gmail.com</a></p>
-                <p>Síguenos en nuestras redes sociales para estar al día de todas nuestras novedades.</p>
-            </div>
+        <section class="contact-info">
+            <h2>Información de Contacto</h2>
+            <p>Email: <a href="mailto:jpraderalopez@gmail.com">jpraderalopez@gmail.com</a></p>
+            <p>Síguenos en nuestras redes sociales para estar al día de todas nuestras novedades.</p>
+        </section>
+
+        <section class="disclaimer">
+            <h2>Aviso Legal</h2>
+            <p>Todo el contenido presentado en este sitio web es completamente ficticio y está sujeto al humor. Cualquier parecido con la realidad es pura coincidencia. Este sitio web tiene fines exclusivamente de entretenimiento y no debe ser tomado en serio.</p>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2025 Informáticos Gitanos. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="theme.js"></script>
 </body>
 </html>
 
