@@ -5,7 +5,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #000;
+    color: #ffffff;  /* Color de texto general */
     margin: 0;
     padding: 0;
 }
@@ -15,7 +15,7 @@ header {
     background: #002088;
     color: #ffffff;
     text-align: center;
-    padding: 1em 0;
+    padding: 20px;
     position: relative;
 }
 
@@ -26,30 +26,39 @@ header {
 
 /* Navegación */
 nav {
-    background: rgb(0, 0, 0);
-    padding: 1em;
+    background: black;
+    padding: 15px;
     text-align: center;
 }
 
 nav a {
     color: #00f735;
-    margin: 0 50px;
+    margin: 20px;
     text-decoration: none;
     font-size: 18px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffffff;
 }
 
 /* Secciones */
 section {
     padding: 40px;
     text-align: center;
+    background: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    margin: 20px;
+    border-radius: 10px;
 }
 
+/* Títulos */
 h2 {
-    color: #002088;
+    color: #00f735;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /* Botones */
@@ -75,5 +84,12 @@ footer {
     background: #001a6e;
     color: white;
     text-align: center;
-    padding: 30px;
+    padding: 20px;
+}
+
+/* Imagenes */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
