@@ -1586,3 +1586,36 @@ footer {
   }
 }
 
+.legal-links {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.legal-link {
+  color: var(--light-color);
+  transition: color var(--transition-medium);
+}
+
+.legal-link:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.separator {
+  margin: 0 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .legal-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .separator {
+    display: none;
+  }
+}
+
