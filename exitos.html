@@ -166,7 +166,7 @@
                     </div>
                     <div class="track-duration">3:45</div>
                     <div class="track-actions">
-                        <button class="play-track"><i class="fas fa-play"></i></button>
+                        <button class="play-track" data-src="audio/amontestado.mp3"><i class="fas fa-play"></i></button>
                     </div>
                 </div>
 
@@ -178,7 +178,7 @@
                     </div>
                     <div class="track-duration">4:12</div>
                     <div class="track-actions">
-                        <button class="play-track"><i class="fas fa-play"></i></button>
+                        <button class="play-track" data-src="audio/paquito_dimision.mp3"><i class="fas fa-play"></i></button>
                     </div>
                 </div>
             </div>
@@ -248,5 +248,91 @@
     </div>
 
     <script src="theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = new Audio();
+            const playPauseButton = document.getElementById('play-pause');
+            const prevTrackButton = document.getElementById('prev-track');
+            const nextTrackButton = document.getElementById('next-track');
+            const trackTitle = document.getElementById('track-title');
+            const trackArtist = document.getElementById('track-artist');
+            const currentTimeElement = document.getElementById('current-time');
+            const totalTimeElement = document.getElementById('total-time');
+            const progressBar = document.querySelector('.progress');
+            const playButtons = document.querySelectorAll('.play-track');
+
+            let currentTrackIndex = 0;
+            let isPlaying = false;
+            const tracks = [
+                {
+                    title: 'Amontestado Ft. Yisus',
+                    artist: 'DJ Paco',
+                    src: 'audio/amontestado.mp3',
+                    duration: '3:45'
+                },
+                {
+                    title: 'Paquito Dimisión Ft.Suno',
+                    artist: 'DJ Paco',
+                    src: 'audio/paquito_dimision.mp3',
+                    duration: '4:12'
+                }
+            ];
+
+            function loadTrack(index) {
+                const track = tracks[index];
+                audio.src = track.src;
+                trackTitle.textContent = track.title;
+                trackArtist.textContent = track.artist;
+                totalTimeElement.textContent = track.duration;
+            }
+
+            function playTrack() {
+                audio.play();
+                isPlaying = true;
+                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+
+            function pauseTrack() {
+                audio.pause();
+                isPlaying = false;
+                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+
+            function togglePlayPause() {
+                if (isPlaying) {
+                    pauseTrack();
+                } else {
+                    playTrack();
+                }
+            }
+
+            function updateProgress() {
+                const currentTime = audio.currentTime;
+                const duration = audio.duration;
+                const progressPercent = (currentTime / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                currentTimeElement.textContent = formatTime(currentTime);
+            }
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            playPauseButton.addEventListener('click', togglePlayPause);
+            audio.addEventListener('timeupdate', updateProgress);
+
+            playButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    currentTrackIndex = index;
+                    loadTrack(currentTrackIndex);
+                    playTrack();
+                });
+            });
+
+            loadTrack(currentTrackIndex);
+        });
+    </script>
 </body>
 </html>
