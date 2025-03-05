@@ -1,34 +1,3 @@
-// Custom cursor
-const cursor = document.querySelector(".cursor")
-const cursorFollower = document.querySelector(".cursor-follower")
-const links = document.querySelectorAll("a, button, .service-card, .release-card, .playlist-track, .faq-question")
-
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px"
-  cursor.style.top = e.clientY + "px"
-
-  setTimeout(() => {
-    cursorFollower.style.left = e.clientX + "px"
-    cursorFollower.style.top = e.clientY + "px"
-  }, 100)
-})
-
-links.forEach((link) => {
-  link.addEventListener("mouseenter", () => {
-    cursor.style.width = "20px"
-    cursor.style.height = "20px"
-    cursorFollower.style.width = "40px"
-    cursorFollower.style.height = "40px"
-  })
-
-  link.addEventListener("mouseleave", () => {
-    cursor.style.width = "10px"
-    cursor.style.height = "10px"
-    cursorFollower.style.width = "30px"
-    cursorFollower.style.height = "30px"
-  })
-})
-
 // Page transitions
 const pageTransition = document.querySelector(".page-transition")
 const links2 = document.querySelectorAll('a[href]:not([target="_blank"])')
@@ -58,6 +27,9 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     pageTransition.style.transform = "translateY(100%)"
   }, 500)
+
+  // Mostrar el popup legal automáticamente al cargar
+  showLegalPopup();
 })
 
 // Mobile navigation
@@ -92,6 +64,43 @@ window.addEventListener("scroll", () => {
     header.classList.remove("scrolled")
   }
 })
+
+// Popup de Aviso Legal
+const legalPopup = document.getElementById("legal-popup");
+const openLegalBtns = document.querySelectorAll("#open-legal-popup");
+const acceptLegalBtns = document.querySelectorAll("#accept-legal");
+
+// Función para mostrar el popup
+function showLegalPopup() {
+  legalPopup.classList.add("active");
+  document.body.style.overflow = "hidden"; // Prevenir scroll
+}
+
+// Función para ocultar el popup
+function hideLegalPopup() {
+  legalPopup.classList.remove("active");
+  document.body.style.overflow = ""; // Permitir scroll nuevamente
+  
+  // Guardar en localStorage que el usuario ha aceptado
+  localStorage.setItem("legalAccepted", "true");
+}
+
+// Evento para mostrar el popup cuando se hace clic en el enlace
+openLegalBtns.forEach(btn => {
+  btn.addEventListener("click", showLegalPopup);
+});
+
+// Evento para cerrar el popup cuando se hace clic en Aceptar
+acceptLegalBtns.forEach(btn => {
+  btn.addEventListener("click", hideLegalPopup);
+});
+
+// Mostrar el popup al inicio si el usuario no lo ha aceptado antes
+document.addEventListener("DOMContentLoaded", function() {
+  if (!localStorage.getItem("legalAccepted")) {
+    showLegalPopup();
+  }
+});
 
 // Testimonial slider
 const testimonials = document.querySelectorAll(".testimonial")
@@ -164,7 +173,9 @@ faqItems.forEach((item) => {
     if (!isActive) {
       item.classList.add("active")
       const answer = item.querySelector(".faq-answer")
-      answer.style.maxHeight = answer.scrollHeight + "px"
+      if (answer) {
+        answer.style.maxHeight = answer.scrollHeight + "px"
+      }
     }
   })
 })
@@ -186,7 +197,7 @@ if (contactForm) {
   })
 }
 
-// Music player functionality
+// Music player functionality - UPDATED TO WORK
 const playPauseBtn = document.getElementById("play-pause")
 const prevTrackBtn = document.getElementById("prev-track")
 const nextTrackBtn = document.getElementById("next-track")
@@ -201,9 +212,14 @@ const playTrackBtns = document.querySelectorAll(".play-track")
 if (playPauseBtn) {
   let isPlaying = false
   let currentTrack = 0
+  let timer = null;
 
   // Simulate play/pause
-  playPauseBtn.addEventListener("click", () => {
+  playPauseBtn.addEventListener("click", function() {
+    togglePlayPause();
+  });
+
+  function togglePlayPause() {
     isPlaying = !isPlaying
 
     if (isPlaying) {
@@ -211,12 +227,14 @@ if (playPauseBtn) {
       // Start progress animation
       progressBar.style.animation = "progress 215s linear forwards"
       progressBar.style.animationPlayState = "running"
+      startTimer();
     } else {
       playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'
       // Pause progress animation
       progressBar.style.animationPlayState = "paused"
+      clearInterval(timer);
     }
-  })
+  }
 
   // Simulate track change
   function changeTrack(index) {
@@ -236,7 +254,12 @@ if (playPauseBtn) {
     trackTitle.textContent = trackInfo.querySelector("h4").textContent
     trackArtist.textContent = trackInfo.querySelector("p").textContent
 
-    // Reset progress
+    // Reset progress and time
+    currentSeconds = 0;
+    currentTimeEl.textContent = formatTime(currentSeconds);
+    clearInterval(timer);
+    
+    // Reset progress bar
     progressBar.style.animation = "none"
     setTimeout(() => {
       progressBar.style.animation = "progress 215s linear forwards"
@@ -246,6 +269,7 @@ if (playPauseBtn) {
     if (isPlaying) {
       playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'
       progressBar.style.animationPlayState = "running"
+      startTimer();
     }
   }
 
@@ -269,6 +293,9 @@ if (playPauseBtn) {
   playlistTracks.forEach((track, index) => {
     track.addEventListener("click", () => {
       changeTrack(index)
+      if (!isPlaying) {
+        togglePlayPause();
+      }
     })
   })
 
@@ -276,9 +303,11 @@ if (playPauseBtn) {
   playTrackBtns.forEach((btn, index) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation()
+      changeTrack(index)
       isPlaying = true
       playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'
-      changeTrack(index)
+      progressBar.style.animationPlayState = "running"
+      startTimer();
     })
   })
 
@@ -292,20 +321,35 @@ if (playPauseBtn) {
     return `${mins}:${secs < 10 ? "0" + secs : secs}`
   }
 
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(updateTime, 1000);
+  }
+
   function updateTime() {
     if (isPlaying && currentSeconds < totalSeconds) {
       currentSeconds++
       currentTimeEl.textContent = formatTime(currentSeconds)
+      
+      // Si llega al tiempo máximo, pasar a la siguiente canción
+      if (currentSeconds >= totalSeconds) {
+        let nextIndex = currentTrack + 1
+        if (nextIndex >= playlistTracks.length) {
+          nextIndex = 0
+        }
+        changeTrack(nextIndex)
+      }
     }
   }
 
-  setInterval(updateTime, 1000)
   totalTimeEl.textContent = formatTime(totalSeconds)
+
+  // Iniciar automáticamente con la primera canción
+  changeTrack(0);
 }
 
 // Release card play overlay
 const releaseCards = document.querySelectorAll(".release-card")
-let isPlaying = false // Declare isPlaying here
 
 releaseCards.forEach((card) => {
   const playBtn = card.querySelector(".play-overlay")
@@ -317,6 +361,7 @@ releaseCards.forEach((card) => {
       playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'
       progressBar.style.animation = "progress 215s linear forwards"
       progressBar.style.animationPlayState = "running"
+      startTimer();
     }
   })
 })
@@ -363,4 +408,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 })
-
