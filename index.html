@@ -11,9 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
     <div class="page-transition"></div>
     
     <header>
@@ -215,17 +212,35 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2023 DJ Paco. Todos los derechos reservados.</p>
-            <div class="legal-links">
-                <a href="#" class="legal-link">Aviso Legal</a>
-                <span class="separator">|</span>
-                <a href="#" class="legal-link">Política de Privacidad</a>
-                <span class="separator">|</span>
-                <a href="#" class="legal-link">Política de Cookies</a>
-            </div>
+            <button id="open-legal-popup" class="legal-button">Aviso Legal</button>
         </div>
     </footer>
+
+    <!-- Popup de Aviso Legal -->
+    <div id="legal-popup" class="legal-popup">
+        <div class="legal-popup-content">
+            <h2>Aviso Legal y Política de Privacidad</h2>
+            <div class="legal-popup-text">
+                <p><strong>1. Información General</strong></p>
+                <p>En cumplimiento con el deber de información dispuesto en la Ley 34/2002 de Servicios de la Sociedad de la Información y el Comercio Electrónico (LSSI-CE) de 11 de julio, se facilitan a continuación los siguientes datos de información general de este sitio web:</p>
+                <p>La titularidad de este sitio web, <strong>djpaco.com</strong>, la ostenta: DJ Paco, con NIF: 12345678A, y cuyos datos de contacto son:</p>
+                <p>Dirección: Calle Ejemplo 123, 28001 Madrid</p>
+                <p>Teléfono de contacto: +34 600 123 456</p>
+                <p>Email de contacto: info@djpaco.com</p>
+                
+                <p><strong>2. Términos y Condiciones de Uso</strong></p>
+                <p>El acceso a este sitio web implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal, que pueden sufrir modificaciones.</p>
+                
+                <p><strong>3. Política de Privacidad</strong></p>
+                <p>DJ Paco se compromete a cumplir con la normativa de protección de datos personales y garantiza el cumplimiento íntegro de las obligaciones dispuestas, así como la implementación de las medidas de seguridad dispuestas en el Reglamento General de Protección de Datos (RGPD) y la normativa española de protección de datos.</p>
+                
+                <p><strong>4. Política de Cookies</strong></p>
+                <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario. Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita un sitio web. Utilizamos cookies para analizar el tráfico del sitio web y personalizar el contenido para usted.</p>
+            </div>
+            <button id="accept-legal" class="btn primary-btn">Aceptar</button>
+        </div>
+    </div>
 
     <script src="theme.js"></script>
 </body>
 </html>
-
