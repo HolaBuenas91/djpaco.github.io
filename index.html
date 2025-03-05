@@ -3,92 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informáticos Gitanos | Inicio</title>
+    <title>DJ Paco - Inicio</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <div class="page-transition"></div>
+    
     <header>
+        <div class="logo">
+            <h1><span class="highlight">DJ</span> PACO</h1>
+        </div>
         <nav>
-            <div class="logo">IG</div>
-            <ul>
-                <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="exitos.html">Música</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="exitos.html"><i class="fas fa-music"></i> Éxitos</a></li>
+                <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
             </ul>
-            <button id="theme-toggle" aria-label="Cambiar tema">🌓</button>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <h1>Informáticos Gitanos</h1>
-            <p>Noticias, música y más del mundo de la informática y la cultura gitana</p>
-        </section>
-
-        <section class="news-board">
-            <h2>Últimas Noticias</h2>
-            <div class="news-grid">
-                <article class="news-card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6YUrIEMn1p2G-rNLKsvLMaXck4FnNGd5ItQ&s" alt="Imagen representativa de Paquito">
-                    <div class="news-content">
-                        <h3>Cambios en la Dirección del IES Leonardo Da Vinci</h3>
-                        <p>Se han anunciado cambios importantes en la dirección del instituto. El actual jefe de estudios, Paquito, ha expresado su intención de dejar el cargo. Más detalles serán proporcionados en los próximos días.</p>
-                    </div>
-                </article>
-
-                <article class="news-card">
-                    <img src="https://thumbs.dreamstime.com/b/icono-plano-de-perfil-avatar-predeterminado-vector-usuario-medios-sociales-retrato-una-imagen-humana-desconocida-un-desconocido-184330869.jpg" alt="imagen desconocida">
-                    <div class="news-content">
-                        <h3>Hallan el cuerpo sin vida de Christian Puyol en un río cerca de Albacete</h3>
-                        <p>
-                            Albacete, 5 de marzo de 2025 | Tras varios días de búsqueda, las autoridades han confirmado el hallazgo del cuerpo sin vida de Christian Puyol, quien se encontraba desaparecido desde hace menos de un mes. 
-                        </p>
-                        <div id="hidden-content" style="display: none;">
-                            <p>Su cadáver fue encontrado en un río cercano a Albacete, aunque por el momento se desconocen las circunstancias de su fallecimiento.</p>
-                            <p>La desaparición de Puyol había generado gran preocupación entre sus familiares y amigos, quienes en las últimas semanas solicitaron ayuda a través de redes sociales y colaboraron con las fuerzas de seguridad en las labores de búsqueda.</p>
-                            <p>Fuentes oficiales han señalado que el caso se encuentra en fase de investigación para esclarecer las causas del suceso. Aún no se ha determinado si existen indicios de criminalidad o si se trata de un accidente.</p>
-                            <p>Las autoridades han pedido prudencia y han asegurado que se realizarán las diligencias necesarias para esclarecer lo sucedido. Mientras tanto, la comunidad lamenta la trágica noticia y envía sus condolencias a la familia del fallecido.</p>
-                            <p>Contacto para información: <a href="mailto:jpraderalopez@gmail.com">jpraderalopez@gmail.com</a></p>
-                        </div>
-                        <button id="toggle-button">Mostrar más</button>
-                    </div>
-                </article>
-
-                <article class="news-card">
-                    <img src="https://png.pngtree.com/png-clipart/20231110/original/pngtree-forbidden-sign-prohibited-photo-png-image_13526260.png" alt="Señal de prohibido">
-                    <div class="news-content">
-                        <h3>Nuevas Políticas de Uso de Dispositivos Móviles</h3>
-                        <p>Se están considerando nuevas políticas sobre el uso de teléfonos móviles en las aulas. Estaremos informando sobre los detalles y la implementación de estas medidas próximamente.</p>
-                    </div>
-                </article>
+            <div class="hero-content">
+                <h1 class="animate-text">DJ PACO</h1>
+                <p class="animate-text delay-1">Creando experiencias musicales inolvidables</p>
+                <div class="cta-buttons animate-text delay-2">
+                    <a href="contacto.html" class="btn primary-btn">Contáctame</a>
+                    <a href="exitos.html" class="btn secondary-btn">Mis Éxitos</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="vinyl-record">
+                    <div class="vinyl-inner"></div>
+                </div>
+                <div class="equalizer">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </section>
 
-        <section class="disclaimer">
-            <h2>Aviso Legal</h2>
-            <p>Todo el contenido presentado en este sitio web es completamente ficticio y está sujeto al humor. Cualquier parecido con la realidad es pura coincidencia. Este sitio web tiene fines exclusivamente de entretenimiento y no debe ser tomado en serio.</p>
+        <section class="about">
+            <div class="section-header">
+                <h2>Sobre Mí</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-container">
+                        <img src="/placeholder.svg?height=400&width=400" alt="DJ Paco">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>La música es mi pasión</h3>
+                    <p>Con más de 10 años de experiencia, he llevado mi música a los mejores escenarios y eventos. Mi estilo único combina ritmos electrónicos con influencias de diversos géneros musicales.</p>
+                    <p>Mi objetivo es crear experiencias memorables a través de la música, conectando con el público y generando ambientes únicos para cada ocasión.</p>
+                    <div class="skills">
+                        <div class="skill">
+                            <span>Mezcla en vivo</span>
+                            <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+                        </div>
+                        <div class="skill">
+                            <span>Producción musical</span>
+                            <div class="skill-bar"><div class="skill-level" style="width: 85%"></div></div>
+                        </div>
+                        <div class="skill">
+                            <span>Eventos corporativos</span>
+                            <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="section-header">
+                <h2>Mis Servicios</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3>Fiestas Privadas</h3>
+                    <p>Música personalizada para tus eventos privados, creando el ambiente perfecto para cada momento.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Producción Musical</h3>
+                    <p>Creación de temas originales y remixes exclusivos adaptados a tus necesidades.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Eventos Corporativos</h3>
+                    <p>Ambientación musical profesional para eventos empresariales y lanzamientos de marca.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3>Clases de DJ</h3>
+                    <p>Aprende las técnicas y secretos de la mezcla profesional con clases personalizadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="section-header">
+                <h2>Testimonios</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-container">
+                    <div class="testimonial active">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"DJ Paco creó una atmósfera increíble en nuestra boda. Todos los invitados estuvieron bailando toda la noche. ¡Totalmente recomendado!"</p>
+                            <div class="testimonial-author">
+                                <h4>María y Carlos</h4>
+                                <span>Boda en Madrid</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Contratamos a DJ Paco para el lanzamiento de nuestra marca y superó todas nuestras expectativas. Profesional, puntual y con un gran repertorio."</p>
+                            <div class="testimonial-author">
+                                <h4>Grupo Innovación</h4>
+                                <span>Evento Corporativo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Las clases con DJ Paco me han ayudado a mejorar mis habilidades como DJ. Su método de enseñanza es claro y efectivo."</p>
+                            <div class="testimonial-author">
+                                <h4>Alejandro Ruiz</h4>
+                                <span>Estudiante</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="prev-testimonial"><i class="fas fa-chevron-left"></i></button>
+                    <div class="testimonial-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="next-testimonial"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Informáticos Gitanos. Todos los derechos reservados.</p>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2><span class="highlight">DJ</span> PACO</h2>
+                <p>Creando experiencias musicales inolvidables</p>
+            </div>
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="exitos.html">Éxitos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Sígueme</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-soundcloud"></i></a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-envelope"></i> info@djpaco.com</p>
+                <p><i class="fas fa-phone"></i> +34 600 123 456</p>
+                <p><i class="fas fa-map-marker-alt"></i> Madrid, España</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 DJ Paco. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
-    <script>
-        document.getElementById("toggle-button").addEventListener("click", function () {
-            var hiddenContent = document.getElementById("hidden-content");
-            var button = document.getElementById("toggle-button");
-
-            if (hiddenContent.style.display === "none") {
-                hiddenContent.style.display = "block";
-                button.textContent = "Mostrar menos";
-            } else {
-                hiddenContent.style.display = "none";
-                button.textContent = "Mostrar más";
-            }
-        });
-    </script>
     <script src="theme.js"></script>
 </body>
 </html>
+

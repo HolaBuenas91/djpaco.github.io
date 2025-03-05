@@ -3,38 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informáticos Gitanos | Página no encontrada</title>
+    <title>DJ Paco - Página no encontrada</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <div class="page-transition"></div>
+    
     <header>
+        <div class="logo">
+            <h1><span class="highlight">DJ</span> PACO</h1>
+        </div>
         <nav>
-            <div class="logo">IG</div>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="exitos.html">Música</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="exitos.html"><i class="fas fa-music"></i> Éxitos</a></li>
+                <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
             </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero error-404">
-            <h1>404</h1>
-            <p>Página no encontrada</p>
-        </section>
-
-        <section class="error-content">
-            <p>Lo sentimos, la página que estás buscando no existe o ha sido movida.</p>
-            <img src="https://support.proctorexam.com/hc/article_attachments/12390519091213/63c99e8da167b.png" alt="Página no encontrada">
-            <a href="index.html" class="button">Volver al inicio</a>
+        <section class="error-page">
+            <div class="error-content">
+                <h1>404</h1>
+                <h2>Página no encontrada</h2>
+                <p>Lo sentimos, la página que estás buscando no existe o ha sido movida.</p>
+                <div class="vinyl-record error-vinyl">
+                    <div class="vinyl-inner"></div>
+                </div>
+                <a href="index.html" class="btn primary-btn">Volver al Inicio</a>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Informáticos Gitanos. Todos los derechos reservados.</p>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2><span class="highlight">DJ</span> PACO</h2>
+                <p>Creando experiencias musicales inolvidables</p>
+            </div>
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="exitos.html">Éxitos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Sígueme</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-soundcloud"></i></a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-envelope"></i> info@djpaco.com</p>
+                <p><i class="fas fa-phone"></i> +34 600 123 456</p>
+                <p><i class="fas fa-map-marker-alt"></i> Madrid, España</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 DJ Paco. Todos los derechos reservados.</p>
+        </div>
     </footer>
+
+    <script src="theme.js"></script>
 </body>
 </html>
 

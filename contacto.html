@@ -3,62 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informáticos Gitanos | Contacto</title>
+    <title>DJ Paco - Contacto</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <div class="page-transition"></div>
+    
     <header>
+        <div class="logo">
+            <h1><span class="highlight">DJ</span> PACO</h1>
+        </div>
         <nav>
-            <div class="logo">IG</div>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="exitos.html">Música</a></li>
-                <li><a href="contacto.html" class="active">Contacto</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="exitos.html"><i class="fas fa-music"></i> Éxitos</a></li>
+                <li><a href="contacto.html" class="active"><i class="fas fa-envelope"></i> Contacto</a></li>
             </ul>
-            <button id="theme-toggle" aria-label="Cambiar tema">🌓</button>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
+        <section class="page-header">
             <h1>Contacto</h1>
-            <p>Estamos aquí para escucharte</p>
+            <p>¿Tienes un evento en mente? ¡Hablemos!</p>
         </section>
 
-        <section class="contact-form">
-            <h2>Envíanos un mensaje</h2>
-            <form>
-                <div class="form-group">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name" required>
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="section-header">
+                        <h2>Información de Contacto</h2>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <p>info@djpaco.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Teléfono</h3>
+                            <p>+34 600 123 456</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Ubicación</h3>
+                            <p>Madrid, España</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-contact">
+                        <h3>Redes Sociales</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-soundcloud"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                
+                <div class="contact-form-container">
+                    <div class="section-header">
+                        <h2>Envíame un Mensaje</h2>
+                        <div class="section-divider"></div>
+                    </div>
+                    
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                            <div class="form-focus-effect"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="form-focus-effect"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone">
+                            <div class="form-focus-effect"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-type">Tipo de Evento</label>
+                            <select id="event-type" name="event-type">
+                                <option value="">Selecciona una opción</option>
+                                <option value="wedding">Boda</option>
+                                <option value="corporate">Evento Corporativo</option>
+                                <option value="birthday">Cumpleaños</option>
+                                <option value="club">Club</option>
+                                <option value="other">Otro</option>
+                            </select>
+                            <div class="form-focus-effect"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Fecha del Evento</label>
+                            <input type="date" id="date" name="date">
+                            <div class="form-focus-effect"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <div class="form-focus-effect"></div>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span>Enviar Mensaje</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    
+                    <div id="form-success" class="form-success">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>¡Mensaje Enviado!</h3>
+                        <p>Gracias por contactarme. Te responderé lo antes posible.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="message">Mensaje:</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Enviar</button>
-            </form>
+            </div>
         </section>
-
-        <section class="contact-info">
-            <h2>Información de Contacto</h2>
-            <p>Email: <a href="mailto:jpraderalopez@gmail.com">jpraderalopez@gmail.com</a></p>
-            <p>Síguenos en nuestras redes sociales para estar al día de todas nuestras novedades.</p>
-        </section>
-
-        <section class="disclaimer">
-            <h2>Aviso Legal</h2>
-            <p>Todo el contenido presentado en este sitio web es completamente ficticio y está sujeto al humor. Cualquier parecido con la realidad es pura coincidencia. Este sitio web tiene fines exclusivamente de entretenimiento y no debe ser tomado en serio.</p>
+        
+        <section class="faq-section">
+            <div class="section-header">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Con cuánta antelación debo reservar?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Recomiendo reservar con al menos 3 meses de antelación para asegurar disponibilidad, especialmente para eventos en temporada alta como bodas en verano.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué equipo proporcionas para los eventos?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Proporciono todo el equipo necesario: sistema de sonido profesional, iluminación, mesa de mezclas y efectos visuales. Todo adaptado al tipo y tamaño del evento.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Puedo solicitar canciones específicas para mi evento?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>¡Por supuesto! Antes del evento, trabajaremos juntos para crear una lista de reproducción personalizada que incluya tus canciones favoritas y se adapte al ambiente que deseas crear.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuál es tu estilo musical?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Mi especialidad es la música electrónica y house, pero soy versátil y puedo adaptar mi estilo a diferentes géneros según las necesidades del evento, desde pop comercial hasta música latina o clásicos de todos los tiempos.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Informáticos Gitanos. Todos los derechos reservados.</p>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2><span class="highlight">DJ</span> PACO</h2>
+                <p>Creando experiencias musicales inolvidables</p>
+            </div>
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="exitos.html">Éxitos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Sígueme</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-soundcloud"></i></a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-envelope"></i> info@djpaco.com</p>
+                <p><i class="fas fa-phone"></i> +34 600 123 456</p>
+                <p><i class="fas fa-map-marker-alt"></i> Madrid, España</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 DJ Paco. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script src="theme.js"></script>

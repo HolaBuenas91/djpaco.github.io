@@ -3,62 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informáticos Gitanos | Música</title>
+    <title>DJ Paco - Éxitos</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <div class="page-transition"></div>
+    
     <header>
+        <div class="logo">
+            <h1><span class="highlight">DJ</span> PACO</h1>
+        </div>
         <nav>
-            <div class="logo">IG</div>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="exitos.html" class="active">Música</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="exitos.html" class="active"><i class="fas fa-music"></i> Éxitos</a></li>
+                <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
             </ul>
-            <button id="theme-toggle" aria-label="Cambiar tema">🌓</button>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Nuestra Música</h1>
-            <p>Descubre los éxitos de Informáticos Gitanos</p>
+        <section class="page-header">
+            <h1>Mis Éxitos</h1>
+            <p>Descubre mis mejores producciones y mezclas</p>
         </section>
 
-        <section class="music-board">
-            <h2>Éxitos Musicales</h2>
-            <div class="music-grid">
-                <article class="music-card">
-                    <div class="video-container">
-                        <iframe src="https://youtube.com/embed/Yz_5vIRSYKc" frameborder="0" allowfullscreen></iframe>
+        <section class="music-releases">
+            <div class="section-header">
+                <h2>Últimos Lanzamientos</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="releases-grid">
+                <div class="release-card">
+                    <div class="release-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Summer Vibes">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
-                    <div class="music-content">
-                        <h3>Dimisión Paquito</h3>
-                        <p>Informáticos Music</p>
+                    <div class="release-info">
+                        <h3>Summer Vibes</h3>
+                        <p>Lanzamiento: Junio 2023</p>
+                        <div class="release-platforms">
+                            <a href="#" class="platform-icon"><i class="fab fa-spotify"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-apple"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-soundcloud"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
                     </div>
-                </article>
-                <article class="music-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/M113AVvcjC4?si=gIxDknfaI8ymsNP_" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <div class="release-card">
+                    <div class="release-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Neon Nights">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
-                    <div class="music-content">
-                        <h3>Amonestado</h3>
-                        <p>Informáticos Music Ft.Yisus</p>
-                        <p>¡Ya está! Corre a escucharla!.</p>
+                    <div class="release-info">
+                        <h3>Neon Nights</h3>
+                        <p>Lanzamiento: Marzo 2023</p>
+                        <div class="release-platforms">
+                            <a href="#" class="platform-icon"><i class="fab fa-spotify"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-apple"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-soundcloud"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
                     </div>
-                </article>
+                </div>
+                
+                <div class="release-card">
+                    <div class="release-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Electric Dreams">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="release-info">
+                        <h3>Electric Dreams</h3>
+                        <p>Lanzamiento: Diciembre 2022</p>
+                        <div class="release-platforms">
+                            <a href="#" class="platform-icon"><i class="fab fa-spotify"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-apple"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-soundcloud"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="release-card">
+                    <div class="release-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Midnight Groove">
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="release-info">
+                        <h3>Midnight Groove</h3>
+                        <p>Lanzamiento: Octubre 2022</p>
+                        <div class="release-platforms">
+                            <a href="#" class="platform-icon"><i class="fab fa-spotify"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-apple"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-soundcloud"></i></a>
+                            <a href="#" class="platform-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="disclaimer">
-            <h2>Aviso Legal</h2>
-            <p>Todo el contenido presentado en este sitio web es completamente ficticio y está sujeto al humor. Cualquier parecido con la realidad es pura coincidencia. Este sitio web tiene fines exclusivamente de entretenimiento y no debe ser tomado en serio.</p>
+        <section class="music-player">
+            <div class="section-header">
+                <h2>Reproductor</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="player-container">
+                <div class="now-playing">
+                    <div class="track-image">
+                        <img src="/placeholder.svg?height=200&width=200" alt="Current Track">
+                        <div class="track-image-overlay"></div>
+                    </div>
+                    <div class="track-info">
+                        <h3 id="track-title">Summer Vibes</h3>
+                        <p id="track-artist">DJ Paco</p>
+                    </div>
+                </div>
+                
+                <div class="player-controls">
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="time-info">
+                            <span id="current-time">0:00</span>
+                            <span id="total-time">3:45</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-buttons">
+                        <button id="prev-track"><i class="fas fa-step-backward"></i></button>
+                        <button id="play-pause"><i class="fas fa-play"></i></button>
+                        <button id="next-track"><i class="fas fa-step-forward"></i></button>
+                        <div class="volume-control">
+                            <i class="fas fa-volume-up"></i>
+                            <div class="volume-slider">
+                                <div class="volume-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="playlist">
+            <div class="section-header">
+                <h2>Playlist Popular</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="playlist-container">
+                <div class="playlist-track active">
+                    <div class="track-number">01</div>
+                    <div class="track-info">
+                        <h4>Summer Vibes</h4>
+                        <p>DJ Paco</p>
+                    </div>
+                    <div class="track-duration">3:45</div>
+                    <div class="track-actions">
+                        <button class="play-track"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+                
+                <div class="playlist-track">
+                    <div class="track-number">02</div>
+                    <div class="track-info">
+                        <h4>Neon Nights</h4>
+                        <p>DJ Paco</p>
+                    </div>
+                    <div class="track-duration">4:12</div>
+                    <div class="track-actions">
+                        <button class="play-track"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+                
+                <div class="playlist-track">
+                    <div class="track-number">03</div>
+                    <div class="track-info">
+                        <h4>Electric Dreams</h4>
+                        <p>DJ Paco</p>
+                    </div>
+                    <div class="track-duration">3:58</div>
+                    <div class="track-actions">
+                        <button class="play-track"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+                
+                <div class="playlist-track">
+                    <div class="track-number">04</div>
+                    <div class="track-info">
+                        <h4>Midnight Groove</h4>
+                        <p>DJ Paco</p>
+                    </div>
+                    <div class="track-duration">5:23</div>
+                    <div class="track-actions">
+                        <button class="play-track"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+                
+                <div class="playlist-track">
+                    <div class="track-number">05</div>
+                    <div class="track-info">
+                        <h4>Urban Rhythm</h4>
+                        <p>DJ Paco</p>
+                    </div>
+                    <div class="track-duration">4:05</div>
+                    <div class="track-actions">
+                        <button class="play-track"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Informáticos Gitanos. Todos los derechos reservados.</p>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2><span class="highlight">DJ</span> PACO</h2>
+                <p>Creando experiencias musicales inolvidables</p>
+            </div>
+            <div class="footer-links">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="exitos.html">Éxitos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Sígueme</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-soundcloud"></i></a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-envelope"></i> info@djpaco.com</p>
+                <p><i class="fas fa-phone"></i> +34 600 123 456</p>
+                <p><i class="fas fa-map-marker-alt"></i> Madrid, España</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 DJ Paco. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script src="theme.js"></script>
