@@ -42,14 +42,16 @@
                     <div class="news-content">
                         <h3>Hallan el cuerpo sin vida de Christian Puyol en un río cerca de Albacete</h3>
                         <p>
-                            Albacete, 5 de marzo de 2025 | Tras varios días de búsqueda, las autoridades han confirmado el hallazgo del cuerpo sin vida de Christian Puyol, quien se encontraba desaparecido desde hace menos de un mes. Su cadáver fue encontrado en un río cercano a Albacete, aunque por el momento se desconocen las circunstancias de su fallecimiento.
-                            
-                            La desaparición de Puyol había generado gran preocupación entre sus familiares y amigos, quienes en las últimas semanas solicitaron ayuda a través de redes sociales y colaboraron con las fuerzas de seguridad en las labores de búsqueda.
-                            
-                            Fuentes oficiales han señalado que el caso se encuentra en fase de investigación para esclarecer las causas del suceso. Aún no se ha determinado si existen indicios de criminalidad o si se trata de un accidente.
-                            
-                            Las autoridades han pedido prudencia y han asegurado que se realizarán las diligencias necesarias para esclarecer lo sucedido. Mientras tanto, la comunidad lamenta la trágica noticia y envía sus condolencias a la familia del fallecido.</p>
-                        <p>Contacto para información: <a href="mailto:jpraderalopez@gmail.com">jpraderalopez@gmail.com</a></p>
+                            Albacete, 5 de marzo de 2025 | Tras varios días de búsqueda, las autoridades han confirmado el hallazgo del cuerpo sin vida de Christian Puyol, quien se encontraba desaparecido desde hace menos de un mes. 
+                        </p>
+                        <div id="hidden-content" style="display: none;">
+                            <p>Su cadáver fue encontrado en un río cercano a Albacete, aunque por el momento se desconocen las circunstancias de su fallecimiento.</p>
+                            <p>La desaparición de Puyol había generado gran preocupación entre sus familiares y amigos, quienes en las últimas semanas solicitaron ayuda a través de redes sociales y colaboraron con las fuerzas de seguridad en las labores de búsqueda.</p>
+                            <p>Fuentes oficiales han señalado que el caso se encuentra en fase de investigación para esclarecer las causas del suceso. Aún no se ha determinado si existen indicios de criminalidad o si se trata de un accidente.</p>
+                            <p>Las autoridades han pedido prudencia y han asegurado que se realizarán las diligencias necesarias para esclarecer lo sucedido. Mientras tanto, la comunidad lamenta la trágica noticia y envía sus condolencias a la familia del fallecido.</p>
+                            <p>Contacto para información: <a href="mailto:jpraderalopez@gmail.com">jpraderalopez@gmail.com</a></p>
+                        </div>
+                        <button id="toggle-button">Mostrar más</button>
                     </div>
                 </article>
 
@@ -73,7 +75,19 @@
         <p>&copy; 2025 Informáticos Gitanos. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="theme.js"></script>
+    <script>
+        document.getElementById("toggle-button").addEventListener("click", function () {
+            var hiddenContent = document.getElementById("hidden-content");
+            var button = document.getElementById("toggle-button");
+
+            if (hiddenContent.style.display === "none") {
+                hiddenContent.style.display = "block";
+                button.textContent = "Mostrar menos";
+            } else {
+                hiddenContent.style.display = "none";
+                button.textContent = "Mostrar más";
+            }
+        });
+    </script>
 </body>
 </html>
-
