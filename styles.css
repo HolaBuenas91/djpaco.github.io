@@ -922,6 +922,25 @@ header.scrolled {
   color: var(--text-secondary);
 }
 
+.audio-status {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--gray-color);
+  display: inline-block;
+}
+
+.audio-status.error {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff3333;
+}
+
+.audio-status.success {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #33cc33;
+}
+
 .player-controls {
   width: 100%;
 }

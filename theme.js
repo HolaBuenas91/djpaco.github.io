@@ -1,252 +1,3 @@
-// Mobile navigation
-const burger = document.querySelector(".burger")
-const nav = document.querySelector(".nav-links")
-const navLinks = document.querySelectorAll(".nav-links li")
-
-burger.addEventListener("click", () => {
-  // Toggle Nav
-  nav.classList.toggle("nav-active")
-
-  // Animate Links
-  navLinks.forEach((link, index) => {
-    if (link.style.animation) {
-      link.style.animation = ""
-    } else {
-      link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`
-    }
-  })
-
-  // Burger Animation
-  burger.classList.toggle("toggle")
-})
-
-// Scroll header effect
-const header = document.querySelector("header")
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 100) {
-    header.classList.add("scrolled")
-  } else {
-    header.classList.remove("scrolled")
-  }
-})
-
-// Custom cursor
-const cursor = document.querySelector(".cursor")
-const cursorFollower = document.querySelector(".cursor-follower")
-
-// Solo inicializar el cursor si los elementos existen
-if (cursor && cursorFollower) {
-  // Función para actualizar la posición del cursor
-  function updateCursorPosition(e) {
-    cursor.style.left = `${e.clientX}px`
-    cursor.style.top = `${e.clientY}px`
-
-    // Usar requestAnimationFrame para un movimiento más suave del follower
-    requestAnimationFrame(() => {
-      cursorFollower.style.left = `${e.clientX}px`
-      cursorFollower.style.top = `${e.clientY}px`
-    })
-  }
-
-  // Evento para actualizar la posición del cursor
-  document.addEventListener("mousemove", updateCursorPosition)
-
-  // Seleccionar todos los elementos interactivos
-  const interactiveElements = document.querySelectorAll(
-    "a, button, input, textarea, select, .service-card, .release-card, .playlist-track, .faq-question, .progress-bar, .dot",
-  )
-
-  // Añadir eventos para cambiar el tamaño del cursor en elementos interactivos
-  interactiveElements.forEach((element) => {
-    element.addEventListener("mouseenter", () => {
-      cursor.classList.add("cursor-hover")
-      cursorFollower.classList.add("follower-hover")
-    })
-
-    element.addEventListener("mouseleave", () => {
-      cursor.classList.remove("cursor-hover")
-      cursorFollower.classList.remove("follower-hover")
-    })
-  })
-
-  // Ocultar el cursor cuando sale del documento
-  document.addEventListener("mouseleave", () => {
-    cursor.style.opacity = "0"
-    cursorFollower.style.opacity = "0"
-  })
-
-  // Mostrar el cursor cuando entra al documento
-  document.addEventListener("mouseenter", () => {
-    cursor.style.opacity = "1"
-    cursorFollower.style.opacity = "1"
-  })
-}
-
-// Page transitions
-const pageTransition = document.querySelector(".page-transition")
-const links2 = document.querySelectorAll('a[href]:not([target="_blank"])')
-
-links2.forEach((link) => {
-  link.addEventListener("click", function (e) {
-    if (this.hostname === window.location.hostname) {
-      e.preventDefault()
-      const href = this.getAttribute("href")
-
-      pageTransition.style.transform = "translateY(0)"
-
-      setTimeout(() => {
-        window.location.href = href
-      }, 500)
-    }
-  })
-})
-
-window.addEventListener("pageshow", (e) => {
-  if (e.persisted) {
-    pageTransition.style.transform = "translateY(100%)"
-  }
-})
-
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    pageTransition.style.transform = "translateY(100%)"
-  }, 500)
-})
-
-// Testimonial slider
-const testimonials = document.querySelectorAll(".testimonial")
-const dots = document.querySelectorAll(".dot")
-const prevBtn = document.querySelector(".prev-testimonial")
-const nextBtn = document.querySelector(".next-testimonial")
-let currentTestimonial = 0
-
-function showTestimonial(n) {
-  if (!testimonials.length) return
-
-  testimonials.forEach((testimonial) => {
-    testimonial.classList.remove("active")
-  })
-
-  dots.forEach((dot) => {
-    dot.classList.remove("active")
-  })
-
-  testimonials[n].classList.add("active")
-  dots[n].classList.add("active")
-}
-
-function nextTestimonial() {
-  if (!testimonials.length) return
-
-  currentTestimonial++
-  if (currentTestimonial >= testimonials.length) {
-    currentTestimonial = 0
-  }
-  showTestimonial(currentTestimonial)
-}
-
-function prevTestimonial() {
-  if (!testimonials.length) return
-
-  currentTestimonial--
-  if (currentTestimonial < 0) {
-    currentTestimonial = testimonials.length - 1
-  }
-  showTestimonial(currentTestimonial)
-}
-
-if (nextBtn && prevBtn) {
-  nextBtn.addEventListener("click", nextTestimonial)
-  prevBtn.addEventListener("click", prevTestimonial)
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      currentTestimonial = index
-      showTestimonial(currentTestimonial)
-    })
-  })
-
-  // Auto slide
-  let testimonialInterval
-
-  function startTestimonialInterval() {
-    testimonialInterval = setInterval(nextTestimonial, 5000)
-  }
-
-  // Iniciar el intervalo
-  if (testimonials.length > 0) {
-    startTestimonialInterval()
-  }
-  // Detener el intervalo al interactuar con los controles
-  ;[nextBtn, prevBtn, ...dots].forEach((control) => {
-    control.addEventListener("mouseenter", () => {
-      clearInterval(testimonialInterval)
-    })
-
-    control.addEventListener("mouseleave", () => {
-      startTestimonialInterval()
-    })
-  })
-}
-
-// FAQ accordion
-const faqItems = document.querySelectorAll(".faq-item")
-
-faqItems.forEach((item) => {
-  const question = item.querySelector(".faq-question")
-  const answer = item.querySelector(".faq-answer")
-
-  question.addEventListener("click", () => {
-    const isActive = item.classList.contains("active")
-
-    // Close all items
-    faqItems.forEach((faqItem) => {
-      faqItem.classList.remove("active")
-      const faqAnswer = faqItem.querySelector(".faq-answer")
-      if (faqAnswer) {
-        faqAnswer.style.maxHeight = null
-      }
-    })
-
-    // Open clicked item if it wasn't active
-    if (!isActive && answer) {
-      item.classList.add("active")
-      answer.style.maxHeight = answer.scrollHeight + "px"
-    }
-  })
-})
-
-// Contact form
-const contactForm = document.getElementById("contact-form")
-const formSuccess = document.getElementById("form-success")
-
-if (contactForm) {
-  // Asegurarse de que los inputs tengan el atributo placeholder
-  const formInputs = contactForm.querySelectorAll("input, textarea, select")
-  formInputs.forEach((input) => {
-    if (!input.hasAttribute("placeholder")) {
-      const label = contactForm.querySelector(`label[for="${input.id}"]`)
-      if (label) {
-        input.setAttribute("placeholder", " ") // Espacio en blanco para activar el efecto
-      }
-    }
-  })
-
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault()
-
-    // Simulate form submission
-    contactForm.style.display = "none"
-    if (formSuccess) {
-      formSuccess.style.display = "block"
-    }
-
-    // Reset form
-    contactForm.reset()
-  })
-}
-
 // Music player functionality
 const playPauseBtn = document.getElementById("play-pause")
 const prevTrackBtn = document.getElementById("prev-track")
@@ -259,35 +10,45 @@ const progressBar = document.querySelector(".progress")
 const progressBarContainer = document.querySelector(".progress-bar")
 const playlistTracks = document.querySelectorAll(".playlist-track")
 const playTrackBtns = document.querySelectorAll(".play-track")
-const audioPlayer = document.createElement("audio")
+const audioPlayer = new Audio() // Crear un elemento de audio nativo
 
-// Tracks data
+// Tracks data - Corregir las rutas de los archivos de audio
 const tracks = [
   {
     title: "Amontestado Ft. Yisus",
     artist: "DJ Paco",
     duration: 215, // in seconds
     url: "https://www.youtube.com/embed/M113AVvcjC4?si=p7nfBLLidEZVj88N",
-    audioUrl: "https://example.com/audio/amontestado.mp3", // URL de ejemplo, reemplazar con URL real
+    audioUrl: "/audio/amontestado.mp3", // Ruta correcta al archivo de audio
   },
   {
     title: "Paquito Dimisión Ft.Suno",
     artist: "DJ Paco",
     duration: 252, // in seconds
     url: "https://www.youtube.com/embed/Yz_5vIRSYKc?si=aK5o-LyxBjtBBVKv",
-    audioUrl: "https://example.com/audio/paquito-dimision.mp3", // URL de ejemplo, reemplazar con URL real
+    audioUrl: "/audio/paquito_dimision.mp3", // Ruta correcta al archivo de audio
   },
 ]
+
+// Función para mostrar mensajes de estado de audio
+function showAudioStatus(message, isError = false) {
+  console.log(message)
+  // Opcional: mostrar un mensaje visual al usuario
+  if (isError && trackTitle) {
+    const originalText = trackTitle.textContent
+    trackTitle.textContent = message
+    setTimeout(() => {
+      trackTitle.textContent = originalText
+    }, 3000)
+  }
+}
 
 if (playPauseBtn && progressBar) {
   let isPlaying = false
   let currentTrack = 0
   let currentTime = 0
   let timer
-
-  // Añadir el elemento de audio al DOM
-  document.body.appendChild(audioPlayer)
-  audioPlayer.style.display = "none"
+  let audioLoaded = false
 
   // Configurar eventos del reproductor de audio
   audioPlayer.addEventListener("timeupdate", () => {
@@ -303,6 +64,36 @@ if (playPauseBtn && progressBar) {
     nextTrack()
   })
 
+  audioPlayer.addEventListener("canplaythrough", () => {
+    audioLoaded = true
+    showAudioStatus("Audio cargado correctamente")
+  })
+
+  audioPlayer.addEventListener("error", (e) => {
+    const errorTypes = [
+      "Error desconocido",
+      "Error de abortado",
+      "Error de red",
+      "Error de decodificación",
+      "Formato no soportado",
+    ]
+
+    const errorMessage = errorTypes[audioPlayer.error.code] || "Error desconocido"
+    showAudioStatus(`Error de audio: ${errorMessage}`, true)
+    console.error("Error de audio:", audioPlayer.error)
+
+    // Activar el fallback de simulación
+    activateFallbackMode()
+  })
+
+  // Activar modo de fallback si hay problemas con el audio
+  function activateFallbackMode() {
+    audioLoaded = false
+    if (!timer && isPlaying) {
+      timer = setInterval(updateProgress, 1000)
+    }
+  }
+
   // Format time function
   function formatTime(seconds) {
     const mins = Math.floor(seconds / 60)
@@ -316,11 +107,27 @@ if (playPauseBtn && progressBar) {
 
     if (isPlaying) {
       playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'
-      audioPlayer.play().catch((error) => {
-        console.error("Error al reproducir:", error)
-        // Fallback para simulación si no hay audio disponible
-        timer = setInterval(updateProgress, 1000)
-      })
+
+      // Intentar reproducir el audio
+      const playPromise = audioPlayer.play()
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Reproducción exitosa
+            showAudioStatus("Reproduciendo...")
+            clearInterval(timer) // Limpiar el timer de fallback si estaba activo
+          })
+          .catch((error) => {
+            console.error("Error al reproducir:", error)
+            showAudioStatus("Error al reproducir", true)
+            // Activar fallback para simulación
+            activateFallbackMode()
+          })
+      } else {
+        // Navegador antiguo que no soporta promesas en play()
+        activateFallbackMode()
+      }
     } else {
       playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'
       audioPlayer.pause()
@@ -342,11 +149,34 @@ if (playPauseBtn && progressBar) {
     }
   }
 
+  // Precargar el audio para mejorar la experiencia
+  function preloadAudio(url) {
+    return new Promise((resolve, reject) => {
+      const tempAudio = new Audio()
+      tempAudio.src = url
+      tempAudio.preload = "auto"
+
+      tempAudio.addEventListener("canplaythrough", () => {
+        resolve(true)
+      })
+
+      tempAudio.addEventListener("error", (err) => {
+        reject(err)
+      })
+
+      // Timeout para evitar esperar indefinidamente
+      setTimeout(() => {
+        resolve(false)
+      }, 5000)
+    })
+  }
+
   // Change track function
-  function changeTrack(index) {
+  async function changeTrack(index) {
     clearInterval(timer)
     currentTrack = index
     currentTime = 0
+    audioLoaded = false
 
     // Detener reproducción actual
     audioPlayer.pause()
@@ -369,8 +199,26 @@ if (playPauseBtn && progressBar) {
 
     // Configurar nueva fuente de audio
     if (tracks[index].audioUrl) {
-      audioPlayer.src = tracks[index].audioUrl
-      audioPlayer.load()
+      try {
+        // Intentar precargar el audio
+        showAudioStatus("Cargando audio...")
+        const preloaded = await preloadAudio(tracks[index].audioUrl).catch(() => false)
+
+        // Configurar el audio principal
+        audioPlayer.src = tracks[index].audioUrl
+        audioPlayer.load()
+
+        if (preloaded) {
+          showAudioStatus("Audio precargado correctamente")
+        }
+      } catch (error) {
+        console.error("Error al precargar audio:", error)
+        showAudioStatus("Error al cargar audio", true)
+        activateFallbackMode()
+      }
+    } else {
+      showAudioStatus("No hay audio disponible para esta pista", true)
+      activateFallbackMode()
     }
 
     // If was playing, keep playing
@@ -378,10 +226,11 @@ if (playPauseBtn && progressBar) {
       if (tracks[index].audioUrl) {
         audioPlayer.play().catch((error) => {
           console.error("Error al reproducir:", error)
-          timer = setInterval(updateProgress, 1000)
+          showAudioStatus("Error al reproducir", true)
+          activateFallbackMode()
         })
       } else {
-        timer = setInterval(updateProgress, 1000)
+        activateFallbackMode()
       }
     }
   }
@@ -419,12 +268,13 @@ if (playPauseBtn && progressBar) {
       currentTime = (clickX / width) * duration
 
       // Si hay audio disponible, actualizar la posición
-      if (audioPlayer.src) {
+      if (audioLoaded) {
         audioPlayer.currentTime = currentTime
+      } else {
+        // Actualizar manualmente si estamos en modo fallback
+        currentTimeEl.textContent = formatTime(currentTime)
+        progressBar.style.width = (clickX / width) * 100 + "%"
       }
-
-      currentTimeEl.textContent = formatTime(currentTime)
-      progressBar.style.width = (clickX / width) * 100 + "%"
     })
   }
 
@@ -452,91 +302,4 @@ if (playPauseBtn && progressBar) {
   // Initialize player
   changeTrack(0)
 }
-
-// Legal popup
-const legalPopup = document.getElementById("legal-popup")
-const openLegalBtn = document.getElementById("open-legal-popup")
-const acceptLegalBtn = document.getElementById("accept-legal")
-
-// Función para verificar si el aviso legal ya fue aceptado
-function checkLegalAccepted() {
-  return localStorage.getItem("legalAccepted") === "true"
-}
-
-// Función para mostrar el popup legal
-function showLegalPopup() {
-  if (legalPopup) {
-    legalPopup.classList.add("active")
-  }
-}
-
-// Función para ocultar el popup legal
-function hideLegalPopup() {
-  if (legalPopup) {
-    legalPopup.classList.remove("active")
-  }
-}
-
-// Show legal popup on first visit
-document.addEventListener("DOMContentLoaded", () => {
-  if (!checkLegalAccepted() && legalPopup) {
-    setTimeout(showLegalPopup, 1000)
-  }
-})
-
-// Open legal popup when button is clicked
-if (openLegalBtn) {
-  openLegalBtn.addEventListener("click", showLegalPopup)
-}
-
-// Accept legal terms
-if (acceptLegalBtn) {
-  acceptLegalBtn.addEventListener("click", () => {
-    localStorage.setItem("legalAccepted", "true")
-    hideLegalPopup()
-  })
-}
-
-// AOS-like scroll animations
-const animateElements = document.querySelectorAll(".service-card, .release-card, .info-item, .skill, .news-card")
-
-function checkScroll() {
-  const triggerBottom = window.innerHeight * 0.8
-
-  animateElements.forEach((element) => {
-    const elementTop = element.getBoundingClientRect().top
-
-    if (elementTop < triggerBottom) {
-      element.style.opacity = "1"
-      element.style.transform = "translateY(0)"
-    }
-  })
-}
-
-// Set initial styles
-animateElements.forEach((element) => {
-  element.style.opacity = "0"
-  element.style.transform = "translateY(30px)"
-  element.style.transition = "opacity 0.6s ease, transform 0.6s ease"
-})
-
-window.addEventListener("scroll", checkScroll)
-window.addEventListener("load", checkScroll)
-
-// Initialize on page load
-document.addEventListener("DOMContentLoaded", () => {
-  // Check if elements exist before initializing
-  if (testimonials.length > 0) {
-    showTestimonial(currentTestimonial)
-  }
-
-  // Check if first FAQ item exists and open it
-  if (faqItems.length > 0) {
-    faqItems[0].classList.add("active")
-    const firstAnswer = faqItems[0].querySelector(".faq-answer")
-    if (firstAnswer) {
-      firstAnswer.style.maxHeight = firstAnswer.scrollHeight + "px"
-    }
-  }
-})
 
