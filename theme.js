@@ -34,33 +34,54 @@ window.addEventListener("scroll", () => {
 // Custom cursor
 const cursor = document.querySelector(".cursor")
 const cursorFollower = document.querySelector(".cursor-follower")
-const links = document.querySelectorAll("a, button, .service-card, .release-card, .playlist-track, .faq-question")
 
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px"
-  cursor.style.top = e.clientY + "px"
+// Solo inicializar el cursor si los elementos existen
+if (cursor && cursorFollower) {
+  // Función para actualizar la posición del cursor
+  function updateCursorPosition(e) {
+    cursor.style.left = `${e.clientX}px`
+    cursor.style.top = `${e.clientY}px`
 
-  setTimeout(() => {
-    cursorFollower.style.left = e.clientX + "px"
-    cursorFollower.style.top = e.clientY + "px"
-  }, 100)
-})
+    // Usar requestAnimationFrame para un movimiento más suave del follower
+    requestAnimationFrame(() => {
+      cursorFollower.style.left = `${e.clientX}px`
+      cursorFollower.style.top = `${e.clientY}px`
+    })
+  }
 
-links.forEach((link) => {
-  link.addEventListener("mouseenter", () => {
-    cursor.style.width = "20px"
-    cursor.style.height = "20px"
-    cursorFollower.style.width = "40px"
-    cursorFollower.style.height = "40px"
+  // Evento para actualizar la posición del cursor
+  document.addEventListener("mousemove", updateCursorPosition)
+
+  // Seleccionar todos los elementos interactivos
+  const interactiveElements = document.querySelectorAll(
+    "a, button, input, textarea, select, .service-card, .release-card, .playlist-track, .faq-question, .progress-bar, .dot",
+  )
+
+  // Añadir eventos para cambiar el tamaño del cursor en elementos interactivos
+  interactiveElements.forEach((element) => {
+    element.addEventListener("mouseenter", () => {
+      cursor.classList.add("cursor-hover")
+      cursorFollower.classList.add("follower-hover")
+    })
+
+    element.addEventListener("mouseleave", () => {
+      cursor.classList.remove("cursor-hover")
+      cursorFollower.classList.remove("follower-hover")
+    })
   })
 
-  link.addEventListener("mouseleave", () => {
-    cursor.style.width = "10px"
-    cursor.style.height = "10px"
-    cursorFollower.style.width = "30px"
-    cursorFollower.style.height = "30px"
+  // Ocultar el cursor cuando sale del documento
+  document.addEventListener("mouseleave", () => {
+    cursor.style.opacity = "0"
+    cursorFollower.style.opacity = "0"
   })
-})
+
+  // Mostrar el cursor cuando entra al documento
+  document.addEventListener("mouseenter", () => {
+    cursor.style.opacity = "1"
+    cursorFollower.style.opacity = "1"
+  })
+}
 
 // Page transitions
 const pageTransition = document.querySelector(".page-transition")
@@ -101,6 +122,8 @@ const nextBtn = document.querySelector(".next-testimonial")
 let currentTestimonial = 0
 
 function showTestimonial(n) {
+  if (!testimonials.length) return
+
   testimonials.forEach((testimonial) => {
     testimonial.classList.remove("active")
   })
@@ -114,6 +137,8 @@ function showTestimonial(n) {
 }
 
 function nextTestimonial() {
+  if (!testimonials.length) return
+
   currentTestimonial++
   if (currentTestimonial >= testimonials.length) {
     currentTestimonial = 0
@@ -122,6 +147,8 @@ function nextTestimonial() {
 }
 
 function prevTestimonial() {
+  if (!testimonials.length) return
+
   currentTestimonial--
   if (currentTestimonial < 0) {
     currentTestimonial = testimonials.length - 1
@@ -141,7 +168,26 @@ if (nextBtn && prevBtn) {
   })
 
   // Auto slide
-  setInterval(nextTestimonial, 5000)
+  let testimonialInterval
+
+  function startTestimonialInterval() {
+    testimonialInterval = setInterval(nextTestimonial, 5000)
+  }
+
+  // Iniciar el intervalo
+  if (testimonials.length > 0) {
+    startTestimonialInterval()
+  }
+  // Detener el intervalo al interactuar con los controles
+  ;[nextBtn, prevBtn, ...dots].forEach((control) => {
+    control.addEventListener("mouseenter", () => {
+      clearInterval(testimonialInterval)
+    })
+
+    control.addEventListener("mouseleave", () => {
+      startTestimonialInterval()
+    })
+  })
 }
 
 // FAQ accordion
@@ -149,6 +195,7 @@ const faqItems = document.querySelectorAll(".faq-item")
 
 faqItems.forEach((item) => {
   const question = item.querySelector(".faq-question")
+  const answer = item.querySelector(".faq-answer")
 
   question.addEventListener("click", () => {
     const isActive = item.classList.contains("active")
@@ -156,14 +203,15 @@ faqItems.forEach((item) => {
     // Close all items
     faqItems.forEach((faqItem) => {
       faqItem.classList.remove("active")
-      const answer = faqItem.querySelector(".faq-answer")
-      answer.style.maxHeight = null
+      const faqAnswer = faqItem.querySelector(".faq-answer")
+      if (faqAnswer) {
+        faqAnswer.style.maxHeight = null
+      }
     })
 
     // Open clicked item if it wasn't active
-    if (!isActive) {
+    if (!isActive && answer) {
       item.classList.add("active")
-      const answer = item.querySelector(".faq-answer")
       answer.style.maxHeight = answer.scrollHeight + "px"
     }
   })
@@ -174,12 +222,25 @@ const contactForm = document.getElementById("contact-form")
 const formSuccess = document.getElementById("form-success")
 
 if (contactForm) {
+  // Asegurarse de que los inputs tengan el atributo placeholder
+  const formInputs = contactForm.querySelectorAll("input, textarea, select")
+  formInputs.forEach((input) => {
+    if (!input.hasAttribute("placeholder")) {
+      const label = contactForm.querySelector(`label[for="${input.id}"]`)
+      if (label) {
+        input.setAttribute("placeholder", " ") // Espacio en blanco para activar el efecto
+      }
+    }
+  })
+
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault()
 
     // Simulate form submission
     contactForm.style.display = "none"
-    formSuccess.style.display = "block"
+    if (formSuccess) {
+      formSuccess.style.display = "block"
+    }
 
     // Reset form
     contactForm.reset()
@@ -198,6 +259,7 @@ const progressBar = document.querySelector(".progress")
 const progressBarContainer = document.querySelector(".progress-bar")
 const playlistTracks = document.querySelectorAll(".playlist-track")
 const playTrackBtns = document.querySelectorAll(".play-track")
+const audioPlayer = document.createElement("audio")
 
 // Tracks data
 const tracks = [
@@ -206,20 +268,40 @@ const tracks = [
     artist: "DJ Paco",
     duration: 215, // in seconds
     url: "https://www.youtube.com/embed/M113AVvcjC4?si=p7nfBLLidEZVj88N",
+    audioUrl: "https://example.com/audio/amontestado.mp3", // URL de ejemplo, reemplazar con URL real
   },
   {
     title: "Paquito Dimisión Ft.Suno",
     artist: "DJ Paco",
     duration: 252, // in seconds
     url: "https://www.youtube.com/embed/Yz_5vIRSYKc?si=aK5o-LyxBjtBBVKv",
+    audioUrl: "https://example.com/audio/paquito-dimision.mp3", // URL de ejemplo, reemplazar con URL real
   },
 ]
 
-if (playPauseBtn) {
+if (playPauseBtn && progressBar) {
   let isPlaying = false
   let currentTrack = 0
   let currentTime = 0
   let timer
+
+  // Añadir el elemento de audio al DOM
+  document.body.appendChild(audioPlayer)
+  audioPlayer.style.display = "none"
+
+  // Configurar eventos del reproductor de audio
+  audioPlayer.addEventListener("timeupdate", () => {
+    if (!isNaN(audioPlayer.duration)) {
+      const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100
+      progressBar.style.width = `${percent}%`
+      currentTime = audioPlayer.currentTime
+      currentTimeEl.textContent = formatTime(currentTime)
+    }
+  })
+
+  audioPlayer.addEventListener("ended", () => {
+    nextTrack()
+  })
 
   // Format time function
   function formatTime(seconds) {
@@ -228,7 +310,25 @@ if (playPauseBtn) {
     return `${mins}:${secs < 10 ? "0" + secs : secs}`
   }
 
-  // Update progress bar
+  // Play/Pause function
+  function togglePlay() {
+    isPlaying = !isPlaying
+
+    if (isPlaying) {
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'
+      audioPlayer.play().catch((error) => {
+        console.error("Error al reproducir:", error)
+        // Fallback para simulación si no hay audio disponible
+        timer = setInterval(updateProgress, 1000)
+      })
+    } else {
+      playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'
+      audioPlayer.pause()
+      clearInterval(timer)
+    }
+  }
+
+  // Update progress bar (fallback si no hay audio)
   function updateProgress() {
     if (isPlaying) {
       currentTime++
@@ -242,24 +342,14 @@ if (playPauseBtn) {
     }
   }
 
-  // Play/Pause function
-  function togglePlay() {
-    isPlaying = !isPlaying
-
-    if (isPlaying) {
-      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'
-      timer = setInterval(updateProgress, 1000)
-    } else {
-      playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'
-      clearInterval(timer)
-    }
-  }
-
   // Change track function
   function changeTrack(index) {
     clearInterval(timer)
     currentTrack = index
     currentTime = 0
+
+    // Detener reproducción actual
+    audioPlayer.pause()
 
     // Update active track in playlist
     playlistTracks.forEach((track, i) => {
@@ -277,9 +367,22 @@ if (playPauseBtn) {
     currentTimeEl.textContent = "0:00"
     progressBar.style.width = "0%"
 
+    // Configurar nueva fuente de audio
+    if (tracks[index].audioUrl) {
+      audioPlayer.src = tracks[index].audioUrl
+      audioPlayer.load()
+    }
+
     // If was playing, keep playing
     if (isPlaying) {
-      timer = setInterval(updateProgress, 1000)
+      if (tracks[index].audioUrl) {
+        audioPlayer.play().catch((error) => {
+          console.error("Error al reproducir:", error)
+          timer = setInterval(updateProgress, 1000)
+        })
+      } else {
+        timer = setInterval(updateProgress, 1000)
+      }
     }
   }
 
@@ -314,6 +417,12 @@ if (playPauseBtn) {
       const duration = tracks[currentTrack].duration
 
       currentTime = (clickX / width) * duration
+
+      // Si hay audio disponible, actualizar la posición
+      if (audioPlayer.src) {
+        audioPlayer.currentTime = currentTime
+      }
+
       currentTimeEl.textContent = formatTime(currentTime)
       progressBar.style.width = (clickX / width) * 100 + "%"
     })
@@ -349,27 +458,42 @@ const legalPopup = document.getElementById("legal-popup")
 const openLegalBtn = document.getElementById("open-legal-popup")
 const acceptLegalBtn = document.getElementById("accept-legal")
 
+// Función para verificar si el aviso legal ya fue aceptado
+function checkLegalAccepted() {
+  return localStorage.getItem("legalAccepted") === "true"
+}
+
+// Función para mostrar el popup legal
+function showLegalPopup() {
+  if (legalPopup) {
+    legalPopup.classList.add("active")
+  }
+}
+
+// Función para ocultar el popup legal
+function hideLegalPopup() {
+  if (legalPopup) {
+    legalPopup.classList.remove("active")
+  }
+}
+
 // Show legal popup on first visit
 document.addEventListener("DOMContentLoaded", () => {
-  if (!localStorage.getItem("legalAccepted")) {
-    setTimeout(() => {
-      legalPopup.classList.add("active")
-    }, 1000)
+  if (!checkLegalAccepted() && legalPopup) {
+    setTimeout(showLegalPopup, 1000)
   }
 })
 
 // Open legal popup when button is clicked
 if (openLegalBtn) {
-  openLegalBtn.addEventListener("click", () => {
-    legalPopup.classList.add("active")
-  })
+  openLegalBtn.addEventListener("click", showLegalPopup)
 }
 
 // Accept legal terms
 if (acceptLegalBtn) {
   acceptLegalBtn.addEventListener("click", () => {
     localStorage.setItem("legalAccepted", "true")
-    legalPopup.classList.remove("active")
+    hideLegalPopup()
   })
 }
 
