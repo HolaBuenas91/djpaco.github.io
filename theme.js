@@ -361,11 +361,11 @@ if (playPauseBtn && progressBar) {
     })
 
     // Update track info
-    trackTitle.textContent = tracks[index].title
-    trackArtist.textContent = tracks[index].artist
-    totalTimeEl.textContent = formatTime(tracks[index].duration)
-    currentTimeEl.textContent = "0:00"
-    progressBar.style.width = "0%"
+    if (trackTitle) trackTitle.textContent = tracks[index].title
+    if (trackArtist) trackArtist.textContent = tracks[index].artist
+    if (totalTimeEl) totalTimeEl.textContent = formatTime(tracks[index].duration)
+    if (currentTimeEl) currentTimeEl.textContent = "0:00"
+    if (progressBar) progressBar.style.width = "0%"
 
     // Configurar nueva fuente de audio
     if (tracks[index].audioUrl) {
@@ -406,8 +406,8 @@ if (playPauseBtn && progressBar) {
 
   // Event listeners
   playPauseBtn.addEventListener("click", togglePlay)
-  nextTrackBtn.addEventListener("click", nextTrack)
-  prevTrackBtn.addEventListener("click", prevTrack)
+  if (nextTrackBtn) nextTrackBtn.addEventListener("click", nextTrack)
+  if (prevTrackBtn) prevTrackBtn.addEventListener("click", prevTrack)
 
   // Click on progress bar to seek
   if (progressBarContainer) {
@@ -423,8 +423,8 @@ if (playPauseBtn && progressBar) {
         audioPlayer.currentTime = currentTime
       }
 
-      currentTimeEl.textContent = formatTime(currentTime)
-      progressBar.style.width = (clickX / width) * 100 + "%"
+      if (currentTimeEl) currentTimeEl.textContent = formatTime(currentTime)
+      if (progressBar) progressBar.style.width = (clickX / width) * 100 + "%"
     })
   }
 
@@ -526,12 +526,14 @@ window.addEventListener("load", checkScroll)
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", () => {
   // Check if elements exist before initializing
-  if (testimonials.length > 0) {
+  const testimonials = document.querySelectorAll(".testimonial")
+  if (testimonials && testimonials.length > 0) {
     showTestimonial(currentTestimonial)
   }
 
   // Check if first FAQ item exists and open it
-  if (faqItems.length > 0) {
+  const faqItems = document.querySelectorAll(".faq-item")
+  if (faqItems && faqItems.length > 0) {
     faqItems[0].classList.add("active")
     const firstAnswer = faqItems[0].querySelector(".faq-answer")
     if (firstAnswer) {
@@ -539,4 +541,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 })
+
+// Añadir estilos para la clase toggle del burger
+document.head.insertAdjacentHTML(
+  "beforeend",
+  `
+  <style>
+    .burger.toggle .line1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .burger.toggle .line2 {
+      opacity: 0;
+    }
+    .burger.toggle .line3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    @keyframes navLinkFade {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+`,
+)
 

@@ -271,6 +271,34 @@ header.scrolled {
   transition: all var(--transition-medium);
 }
 
+/* Estilos para la navegación móvil */
+.nav-active {
+  transform: translateX(0%) !important;
+}
+
+.burger.toggle .line1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.burger.toggle .line2 {
+  opacity: 0;
+}
+
+.burger.toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
   min-height: 100vh;
