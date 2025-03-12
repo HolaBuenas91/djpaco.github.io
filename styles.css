@@ -1172,7 +1172,7 @@
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 50%;
-    background-color: #8b5cf6;
+    background: linear-gradient(90deg, purple, red);
     display: flex;
     align-items: center;
     justify-content: center;
