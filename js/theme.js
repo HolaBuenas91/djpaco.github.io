@@ -72,9 +72,9 @@ if (cursor && cursorFollower && !isMobile) {
   // Evento para actualizar la posición del cursor
   document.addEventListener("mousemove", updateCursorPosition)
 
-  // Seleccionar todos los elementos interactivos
+  // Seleccionar todos los elementos interactivos, incluyendo elementos del popup
   const interactiveElements = document.querySelectorAll(
-    "a, button, input, textarea, select, .service-card, .release-card, .playlist-track, .faq-question, .progress-bar, .dot",
+    "a, button, input, textarea, select, .service-card, .release-card, .playlist-track, .faq-question, .progress-bar, .dot, .legal-popup-content, #accept-legal",
   )
 
   // Añadir eventos para cambiar el tamaño del cursor en elementos interactivos
@@ -496,6 +496,12 @@ function checkLegalAccepted() {
 function showLegalPopup() {
   if (legalPopup) {
     legalPopup.classList.add("active")
+
+    // Asegurarse de que el cursor siga visible en el popup
+    if (cursor && cursorFollower && !isMobile) {
+      cursor.style.zIndex = "10000"
+      cursorFollower.style.zIndex = "9999"
+    }
   }
 }
 
