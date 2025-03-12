@@ -43,6 +43,10 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+}
+
+/* El cursor se aplicará mediante JavaScript */
+.custom-cursor {
   cursor: none;
 }
 
@@ -50,6 +54,9 @@ a {
   text-decoration: none;
   color: inherit;
   transition: color var(--transition-medium);
+}
+
+.custom-cursor a {
   cursor: none;
 }
 
@@ -71,11 +78,16 @@ textarea {
   font-size: inherit;
   outline: none;
   border: none;
+}
+
+.custom-cursor button,
+.custom-cursor input,
+.custom-cursor select,
+.custom-cursor textarea {
   cursor: none;
 }
 
 button {
-  cursor: none;
   background: none;
 }
 
@@ -117,6 +129,12 @@ button {
   width: 40px;
   height: 40px;
   border-color: var(--primary-color);
+}
+
+/* Ocultar cursor personalizado en dispositivos móviles */
+.mobile-device .cursor,
+.mobile-device .cursor-follower {
+  display: none !important;
 }
 
 /* ===== PAGE TRANSITION ===== */
