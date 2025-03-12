@@ -72,9 +72,9 @@ if (cursor && cursorFollower && !isMobile) {
   // Evento para actualizar la posición del cursor
   document.addEventListener("mousemove", updateCursorPosition)
 
-  // Seleccionar todos los elementos interactivos, incluyendo elementos del popup
+  // Seleccionar todos los elementos interactivos
   const interactiveElements = document.querySelectorAll(
-    "a, button, input, textarea, select, .service-card, .release-card, .playlist-track, .faq-question, .progress-bar, .dot, .legal-popup-content, #accept-legal",
+    "a, button, input, textarea, select, .service-card, .release-card, .playlist-track, .faq-question, .progress-bar, .dot",
   )
 
   // Añadir eventos para cambiar el tamaño del cursor en elementos interactivos
@@ -100,6 +100,13 @@ if (cursor && cursorFollower && !isMobile) {
   document.addEventListener("mouseenter", () => {
     cursor.style.opacity = "1"
     cursorFollower.style.opacity = "1"
+  })
+
+  // Asegurarse de que el cursor esté siempre por encima de todo
+  document.addEventListener("DOMNodeInserted", (e) => {
+    // Mantener el cursor siempre en el z-index más alto
+    cursor.style.zIndex = "100000"
+    cursorFollower.style.zIndex = "99999"
   })
 }
 
@@ -499,8 +506,41 @@ function showLegalPopup() {
 
     // Asegurarse de que el cursor siga visible en el popup
     if (cursor && cursorFollower && !isMobile) {
-      cursor.style.zIndex = "10000"
-      cursorFollower.style.zIndex = "9999"
+      // Forzar que el cursor esté por encima de todo
+      cursor.style.zIndex = "100000"
+      cursorFollower.style.zIndex = "99999"
+
+      // Asegurarse de que el cursor esté visible
+      cursor.style.opacity = "1"
+      cursorFollower.style.opacity = "1"
+
+      // Aplicar mix-blend-mode diferente para el popup
+      cursor.style.mixBlendMode = "difference"
+      cursorFollower.style.mixBlendMode = "difference"
+    }
+
+    // Añadir eventos de mouse al popup para el cursor
+    const popupContent = document.querySelector(".legal-popup-content")
+    if (popupContent && cursor && cursorFollower && !isMobile) {
+      function updateCursorPosition(e) {
+        cursor.style.left = `${e.clientX}px`
+        cursor.style.top = `${e.clientY}px`
+
+        // Usar requestAnimationFrame para un movimiento más suave del follower
+        requestAnimationFrame(() => {
+          cursorFollower.style.left = `${e.clientX}px`
+          cursorFollower.style.top = `${e.clientY}px`
+        })
+      }
+      popupContent.addEventListener("mousemove", updateCursorPosition)
+      popupContent.addEventListener("mouseenter", () => {
+        cursor.classList.add("cursor-hover")
+        cursorFollower.classList.add("follower-hover")
+      })
+      popupContent.addEventListener("mouseleave", () => {
+        cursor.classList.remove("cursor-hover")
+        cursorFollower.classList.remove("follower-hover")
+      })
     }
   }
 }
@@ -516,6 +556,36 @@ function hideLegalPopup() {
 document.addEventListener("DOMContentLoaded", () => {
   if (!checkLegalAccepted() && legalPopup) {
     setTimeout(showLegalPopup, 1000)
+  }
+
+  // Crear un nuevo cursor específico para el popup si es necesario
+  if (!isMobile && legalPopup) {
+    const popupCursor = document.createElement("div")
+    popupCursor.className = "popup-cursor"
+    popupCursor.style.position = "fixed"
+    popupCursor.style.width = "20px"
+    popupCursor.style.height = "20px"
+    popupCursor.style.borderRadius = "50%"
+    popupCursor.style.backgroundColor = "var(--primary-color)"
+    popupCursor.style.pointerEvents = "none"
+    popupCursor.style.zIndex = "200000"
+    popupCursor.style.transform = "translate(-50%, -50%)"
+    popupCursor.style.display = "none"
+
+    document.body.appendChild(popupCursor)
+
+    // Añadir evento para mostrar el cursor del popup
+    legalPopup.addEventListener("mousemove", (e) => {
+      if (legalPopup.classList.contains("active")) {
+        popupCursor.style.display = "block"
+        popupCursor.style.left = `${e.clientX}px`
+        popupCursor.style.top = `${e.clientY}px`
+      }
+    })
+
+    legalPopup.addEventListener("mouseleave", () => {
+      popupCursor.style.display = "none"
+    })
   }
 })
 
@@ -626,6 +696,22 @@ document.head.insertAdjacentHTML(
     .custom-cursor .progress-bar,
     .custom-cursor .dot {
       cursor: none;
+    }
+    
+    /* Cursor específico para el popup */
+    .popup-cursor {
+      pointer-events: none;
+      mix-blend-mode: difference;
+    }
+    
+    /* Asegurar que el popup no interfiera con el cursor */
+    .legal-popup * {
+      pointer-events: auto;
+    }
+    
+    .legal-popup-content {
+      position: relative;
+      z-index: 9995;
     }
   </style>
 `,
