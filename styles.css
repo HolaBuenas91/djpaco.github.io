@@ -99,7 +99,7 @@ button {
   border-radius: 50%;
   background-color: var(--primary-color);
   pointer-events: none;
-  z-index: 10000; /* Aumentado para estar por encima del popup */
+  z-index: 9999;
   transform: translate(-50%, -50%);
   transition: width 0.2s, height 0.2s, background-color 0.2s;
   mix-blend-mode: difference;
@@ -112,7 +112,7 @@ button {
   border-radius: 50%;
   border: 1px solid var(--primary-color);
   pointer-events: none;
-  z-index: 9999; /* Aumentado para estar por encima del popup pero debajo del cursor principal */
+  z-index: 9998;
   transform: translate(-50%, -50%);
   transition: width 0.3s, height 0.3s, border-color 0.3s;
   mix-blend-mode: difference;
@@ -1166,8 +1166,8 @@ header.scrolled {
 }
 
 .info-icon {
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   display: flex;
@@ -1652,7 +1652,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9990; /* Reducido para estar debajo del cursor */
+  z-index: 9999;
   opacity: 0;
   visibility: hidden;
   transition: all var(--transition-medium);
