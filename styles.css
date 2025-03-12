@@ -1143,6 +1143,7 @@
   /* ===== CONTACT SECTION ===== */
   .contact-section {
     background-color: var(--light-color);
+    padding: 5rem 2rem;
   }
   
   .contact-container {
