@@ -1222,34 +1222,41 @@
     box-shadow: var(--shadow-light);
   }
   
-  /* En la sección de CONTACT SECTION, modificar el estilo del .contact-form para asegurar que los elementos estén en dos columnas */
-  
   .contact-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
   }
   
-  /* Asegurarse de que los elementos que deben ocupar toda la anchura lo hagan correctamente */
-  .form-group:nth-child(5),
-  .form-group:nth-child(6) {
-    grid-column: span 2;
-  }
-  
-  /* Asegurarse de que el botón de envío ocupe toda la anchura */
-  .submit-btn {
-    grid-column: span 2;
-  }
-  
-  /* Corregir el formulario de contacto para evitar superposición */
   .form-group {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
   }
   
   .form-group:nth-child(5),
   .form-group:nth-child(6) {
-    grid-column: span 2;
+    grid-column: 1 / span 2;
+  }
+  
+  .submit-btn {
+    grid-column: 1 / span 2;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-color);
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all var(--transition-medium);
+    box-shadow: var(--shadow-light);
+    margin-top: 1rem;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
   }
   
   .form-group label {
@@ -1315,26 +1322,6 @@
     width: 100%;
   }
   
-  .submit-btn {
-    grid-column: span 2;
-    padding: 1rem 2rem;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    color: var(--light-color);
-    border-radius: var(--border-radius-md);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: all var(--transition-medium);
-    box-shadow: var(--shadow-light);
-  }
-  
-  .submit-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-medium);
-  }
-  
   .form-success {
     display: none;
     text-align: center;
@@ -1345,6 +1332,26 @@
     font-size: 4rem;
     color: #4caf50;
     margin-bottom: 1rem;
+  }
+  
+  /* Ajustes responsivos para el formulario */
+  @media (max-width: 768px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+  
+    .contact-form {
+      grid-template-columns: 1fr;
+    }
+  
+    .form-group:nth-child(5),
+    .form-group:nth-child(6) {
+      grid-column: 1;
+    }
+  
+    .submit-btn {
+      grid-column: 1;
+    }
   }
   
   /* ===== FAQ SECTION ===== */
